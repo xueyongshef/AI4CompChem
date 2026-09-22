@@ -2,6 +2,10 @@
 
 Tutorials and examples for using artificial intelligence in computational chemistry.
 
+## Website
+
+Visit the course website at [xueyongshef.github.io/AI4CompChem](https://xueyongshef.github.io/AI4CompChem/).
+
 ## Repository Structure
 
 ```text
@@ -27,4 +31,3 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
-
