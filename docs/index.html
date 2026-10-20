@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Practical Python, molecular modelling, DFT, and molecular dynamics tutorials.">
+  <meta name="description" content="Learn computational chemistry with AI-assisted topic guides: quantum foundations, basis sets, Hartree–Fock, DFT, potential energy surfaces, and molecular simulation.">
   <title>AI4CompChem | Computational chemistry, made practical</title>
   <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -18,11 +18,11 @@
     <section class="hero">
       <img class="hero-image" src="assets/quantum-hero.png" alt="Molecule surrounded by a calculated electron-density surface">
       <div class="hero-content">
-        <p class="eyebrow"><span></span> Open learning for molecular science</p>
+        <p class="eyebrow"><span></span> AI-assisted learning for molecular science</p>
         <h1>Computational chemistry, made practical.</h1>
-        <p class="hero-copy">Move from Python fundamentals to real molecular simulations through focused, reproducible tutorials.</p>
+        <p class="hero-copy">Explore quantum chemistry and molecular simulation with AI-assisted explanations, visual examples, and a growing video curriculum.</p>
         <div class="hero-actions"><a class="button primary" href="#curriculum">Explore the curriculum ↓</a><a class="button secondary" href="https://github.com/xueyongshef/AI4CompChem">View repository ↗</a></div>
-        <div class="hero-meta"><span><b>05</b> guided modules</span><span><b>100%</b> open source</span><span><b>∞</b> room to explore</span></div>
+        <div class="hero-meta"><span><b>15</b> topic outlines</span><span><b>04</b> learning stages</span><span><b>∞</b> questions to explore</span></div>
       </div>
     </section>
     <section class="intro band">
@@ -31,14 +31,49 @@
       <div class="principles"><article><span>01</span><h3>Reproducible</h3><p>Every lesson is built to run again, adapt, and share.</p></article><article><span>02</span><h3>Visual</h3><p>See structures, energies, and trajectories take shape.</p></article><article><span>03</span><h3>Practical</h3><p>Build useful workflows from the very first module.</p></article></div>
     </section>
     <section class="curriculum band" id="curriculum">
-      <div class="section-heading"><div><p class="section-label">Learning path</p><h2>Five modules.<br>One connected journey.</h2></div><p>Follow the sequence or jump directly to the topic you need. Each module builds a skill you will reuse in real molecular modelling work.</p></div>
-      <div class="module-list">
-        <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/01_getting_started"><span class="number">01</span><span class="module-icon aqua">✦</span><span class="module-info"><b>Getting started</b><small>Environment · notebooks · workflow</small></span><span>↗</span></a>
-        <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/02_python"><span class="number">02</span><span class="module-icon blue">{ }</span><span class="module-info"><b>Python essentials</b><small>Arrays · plotting · scientific tools</small></span><span>↗</span></a>
-        <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/03_molecules"><span class="number">03</span><span class="module-icon coral">⬡</span><span class="module-info"><b>Working with molecules</b><small>Structures · formats · descriptors</small></span><span>↗</span></a>
-        <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/04_dft"><span class="number">04</span><span class="module-icon lime">∿</span><span class="module-info"><b>Density functional theory</b><small>Energy · orbitals · optimisation</small></span><span>↗</span></a>
-        <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/05_molecular_dynamics"><span class="number">05</span><span class="module-icon violet">⟶</span><span class="module-info"><b>Molecular dynamics</b><small>Forces · ensembles · trajectories</small></span><span>↗</span></a>
-      </div>
+      <div class="section-heading"><div><p class="section-label">Learning path</p><h2>Fifteen topics.<br>Four connected stages.</h2></div><p>Start with quantum foundations, build from basis sets and Hartree–Fock to DFT, then explore potential energy surfaces, reactions, and molecular simulations.</p></div>
+      <p class="curriculum-note"><strong>Curriculum in development.</strong> Explore the topic outlines below. Short videos, worked calculations, and exercises are being developed topic by topic.</p>
+      <nav class="curriculum-jump" aria-label="Learning stages">
+        <a href="#foundations">01 · Foundations</a>
+        <a href="#electronic-structure">02 · Electronic structure</a>
+        <a href="#energy-and-reactions">03 · Potential energy and reactions</a>
+        <a href="#molecular-simulation">04 · Molecular simulation</a>
+      </nav>
+      <section class="topic-group" id="foundations" aria-labelledby="foundations-title">
+        <div class="topic-group-heading"><h3 id="foundations-title">Foundations</h3><p>Build the computational and quantum concepts needed for the methods ahead.</p></div>
+        <div class="module-list">
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/01_getting_started"><span class="number">01</span><span class="module-icon aqua" aria-hidden="true">✦</span><span class="module-info"><b>Getting started</b><small>Environments · notebooks · reproducible workflows</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/02_python"><span class="number">02</span><span class="module-icon blue" aria-hidden="true">{ }</span><span class="module-info"><b>Python essentials</b><small>Arrays · plotting · scientific data</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/03_molecules"><span class="number">03</span><span class="module-icon coral" aria-hidden="true">⬡</span><span class="module-info"><b>Working with molecules</b><small>Coordinates · charge · spin · file formats</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/04_quantum_foundations"><span class="number">04</span><span class="module-icon violet" aria-hidden="true">ψ</span><span class="module-info"><b>Quantum chemistry foundations</b><small>Wavefunctions · Hamiltonians · Born–Oppenheimer</small></span><span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+      <section class="topic-group" id="electronic-structure" aria-labelledby="electronic-structure-title">
+        <div class="topic-group-heading"><h3 id="electronic-structure-title">Electronic structure</h3><p>Learn how basis sets and electronic-structure methods work together, from HF to DFT.</p></div>
+        <div class="module-list">
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/05_basis_sets"><span class="number">05</span><span class="module-icon blue" aria-hidden="true">φ</span><span class="module-info"><b>Basis sets</b><small>Gaussian functions · polarisation · diffuse functions</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/06_hartree_fock"><span class="number">06</span><span class="module-icon aqua" aria-hidden="true">HF</span><span class="module-info"><b>Hartree–Fock (HF)</b><small>Mean field · exchange · SCF · RHF and UHF</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/07_electron_correlation"><span class="number">07</span><span class="module-icon violet" aria-hidden="true">Ec</span><span class="module-info"><b>Electron correlation and post-HF</b><small>Correlation energy · MP2 · coupled cluster</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/08_dft"><span class="number">08</span><span class="module-icon lime" aria-hidden="true">ρ</span><span class="module-info"><b>Density functional theory (DFT)</b><small>Electron density · functionals · grids · dispersion</small></span><span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+      <section class="topic-group" id="energy-and-reactions" aria-labelledby="energy-and-reactions-title">
+        <div class="topic-group-heading"><h3 id="energy-and-reactions-title">Potential energy and reactions</h3><p>Connect energy landscapes to molecular structures, vibrations, and reaction pathways.</p></div>
+        <div class="module-list">
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/09_potential_energy_surfaces"><span class="number">09</span><span class="module-icon coral" aria-hidden="true">V</span><span class="module-info"><b>Potential energy surfaces (PES)</b><small>Energy landscapes · bond scans · minima · forces</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/10_geometry_optimisation"><span class="number">10</span><span class="module-icon aqua" aria-hidden="true">∇</span><span class="module-info"><b>Geometry optimisation</b><small>Gradients · convergence · local minima</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/11_vibrations_thermochemistry"><span class="number">11</span><span class="module-icon blue" aria-hidden="true">ν</span><span class="module-info"><b>Vibrations and thermochemistry</b><small>Hessians · normal modes · ZPE · thermal corrections</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/12_reaction_paths"><span class="number">12</span><span class="module-icon violet" aria-hidden="true">‡</span><span class="module-info"><b>Transition states and reaction paths</b><small>Saddle points · barriers · imaginary modes · IRC</small></span><span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+      <section class="topic-group" id="molecular-simulation" aria-labelledby="molecular-simulation-title">
+        <div class="topic-group-heading"><h3 id="molecular-simulation-title">Molecular simulation</h3><p>Use interaction potentials to explore molecular motion, ensembles, and sampling.</p></div>
+        <div class="module-list">
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/13_force_fields"><span class="number">13</span><span class="module-icon lime" aria-hidden="true">U</span><span class="module-info"><b>Force fields and interaction potentials</b><small>Bonded terms · Lennard–Jones · Coulomb · limitations</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/14_molecular_dynamics"><span class="number">14</span><span class="module-icon violet" aria-hidden="true">⟶</span><span class="module-info"><b>Molecular dynamics (MD)</b><small>Integration · time steps · ensembles · trajectories</small></span><span aria-hidden="true">↗</span></a>
+          <a class="module" href="https://github.com/xueyongshef/AI4CompChem/tree/main/tutorials/15_statistical_mechanics"><span class="number">15</span><span class="module-icon coral" aria-hidden="true">kT</span><span class="module-info"><b>Statistical mechanics and sampling</b><small>Boltzmann weights · averages · uncertainty · free energy</small></span><span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
     </section>
     <section class="workspace band" id="workspace">
       <div class="workspace-copy"><p class="section-label light">Inside the workspace</p><h2>Think in molecules.<br>Work in code.</h2><p>Notebooks keep theory, code, and results together. Change a parameter, rerun the model, and watch the molecular picture respond.</p><a class="text-link" href="https://github.com/xueyongshef/AI4CompChem/tree/main/notebooks">Browse notebooks ↗</a></div>
