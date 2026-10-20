@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Learn Transition states and reaction paths by asking better AI questions, comparing worked answers, and checking your understanding.">
+  <title>Transition states and reaction paths | Ask AI | AI4CompChem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../chapters.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html"><span class="brand-mark"><i></i><i></i><i></i></span><span>AI4<span>CompChem</span></span></a>
+    <button class="menu-button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="site-nav"><a href="../index.html#curriculum">All chapters</a><a href="#ask-ai">Ask AI</a><a href="#references">References</a><a class="github-link" href="https://github.com/xueyongshef/AI4CompChem">GitHub ↗</a></nav>
+  </header>
+  <main class="chapter-main" id="top">
+    <header class="chapter-heading">
+      <a class="chapter-back" href="../index.html#energy-and-reactions">← Potential energy and reactions</a>
+      <p class="section-label">Chapter 12 · Potential energy and reactions</p>
+      <h1>Transition states and reaction paths</h1>
+      <p class="chapter-subtitle">Saddle points · barriers · imaginary modes · IRC</p>
+      <p class="chapter-intro">Learn the chemistry by turning a sticking point into a precise question, examining an answer, and explaining the idea yourself.</p>
+      <a class="button primary" href="#ask-ai">Explore three worked questions ↓</a>
+    </header>
+    <section class="chapter-overview chapter-section" aria-label="Chapter outline">
+      <div><h2>What you will learn</h2><ul><li>Distinguish a reaction coordinate, a transition-state search, and an intrinsic reaction coordinate (IRC).</li><li>Assess a candidate transition state using its relevant imaginary mode and connection to reactants and products.</li></ul></div>
+      <details class="lesson-plan"><summary>Video and exercise plan</summary><p>Videos, full explanatory lessons, and runnable exercises are in preparation. The Ask AI examples below are available to study now.</p><h3>Planned short videos</h3><ol><li>Finding a transition state</li><li>Checking where a reaction path leads</li></ol><h3>Planned exercise</h3><p>Annotate a model reaction-energy diagram and describe how to check the saddle point and report an electronic or free-energy barrier.</p></details>
+    </section>
+    <section class="chapter-section" id="ask-ai" aria-labelledby="ask-ai-title">
+      <p class="section-label">A separate space for your questions</p><h2 id="ask-ai-title">Ask AI when you get stuck.</h2>
+      <p>Choose a problem below. Adapt the question to your situation, try it in your AI tool, then compare the explanation and use the self-check.</p>
+      <p class="example-note"><strong>About the answers:</strong> The example answers are course-authored teaching examples, not recorded responses from a named external model. Use ChatGPT or another AI tutor, and record the tool, model name shown in the app, and date when you try a question.</p>
+      <ol class="question-framework"><li><strong>What I know</strong><span>State your level and the part you already understand.</span></li><li><strong>Where I am stuck</strong><span>Identify one confusing term, step, result, or contradiction.</span></li><li><strong>My evidence</strong><span>Include the relevant molecule, method, basis, units, code, or output.</span></li><li><strong>Help I need</strong><span>Request an explanation, comparison, diagnostic question, or hint.</span></li><li><strong>How I will check</strong><span>Ask for assumptions and a check against a reference, calculation, or self-test.</span></li></ol>
+      <nav class="question-index" aria-label="Common sticking points"><a href="#question-1">01 · I found one imaginary mode and assume the reaction is solved.</a><a href="#question-2">02 · I mix up forward and reverse barriers.</a><a href="#question-3">03 · I think an IRC is a molecular movie.</a></nav>
+      <article class="question-card" id="question-1" aria-labelledby="question-title-1">
+        <p class="section-label">Sticking point 01</p>
+        <h3 id="question-title-1">I found one imaginary mode and assume the reaction is solved.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Does one imaginary frequency prove the intended transition state?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-1" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-1">Explain how to assess a candidate first-order saddle point. Include stationarity, the relevant imaginary mode, and checking its connection to the intended reactant and product, for example using IRC calculations and endpoint optimisation.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It asks whether mathematical character and chemical connectivity both match the intended reaction.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>One relevant unstable vibrational direction supports first-order saddle character when stationarity and numerical quality are established. It does not identify the connected species by itself. Inspect the mode and follow suitable paths in both directions, then characterise their endpoints. The resulting connection must match the reaction being proposed.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>What would I conclude if the two endpoints belonged to an unintended rearrangement?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>Does counting imaginary frequencies determine the identities of the reactant and product?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>No. Connectivity requires separate checks.</p></details></div></details>
+      </article>
+      <article class="question-card" id="question-2" aria-labelledby="question-title-2">
+        <p class="section-label">Sticking point 02</p>
+        <h3 id="question-title-2">I mix up forward and reverse barriers.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Which barrier should I subtract?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-2" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-2">Use a toy electronic-energy diagram with reactant 0, transition state 40, and product -10 kJ/mol. Calculate forward and reverse electronic barriers with explicit reference states, and explain why these values are not automatically free-energy barriers.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It supplies a complete sign convention and labels the energy type.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>The forward electronic barrier is 40 - 0 = 40 kJ/mol. The reverse barrier is 40 - (-10) = 50 kJ/mol. The reaction electronic energy is -10 kJ/mol in the forward direction. These arithmetic examples describe the supplied toy diagram; thermal and entropy contributions would be needed for free-energy barriers.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>How would the two barriers change if every energy were shifted by the same constant?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>What is the reverse barrier in the toy diagram?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>50 kJ/mol, measured from product to transition state.</p></details></div></details>
+      </article>
+      <article class="question-card" id="question-3" aria-labelledby="question-title-3">
+        <p class="section-label">Sticking point 03</p>
+        <h3 id="question-title-3">I think an IRC is a molecular movie.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Does an IRC predict the actual time evolution?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-3" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-3">Compare an intrinsic reaction coordinate with a bond scan and a molecular-dynamics trajectory. Explain what each path represents, whether it has physical time, and how it helps test a reaction hypothesis.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It distinguishes different meanings of a path through molecular configurations.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>An IRC follows a particular steepest-descent path from a saddle point in mass-weighted coordinates. A bond scan follows a chosen constraint. A dynamics trajectory follows equations of motion with a time parameter. An IRC can help establish connectivity, but is not a finite-temperature movie or a full kinetic prediction.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>What additional ingredients would a finite-temperature rate calculation require?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>Does an IRC step correspond to a fixed amount of physical time?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>No. IRC progress is not a dynamics time coordinate.</p></details></div></details>
+      </article>
+    </section>
+    <section class="question-builder chapter-section" aria-labelledby="builder-title">
+      <p class="section-label">Practise the skill</p><h2 id="builder-title">Build your own question.</h2>
+      <p>Complete the prompts below, then paste your draft into ChatGPT or another AI tutor. Your text stays on this page; the builder does not send it to an AI service.</p>
+      <noscript><p>Use this pattern: what I know → where I am stuck → my evidence → help I need → how I will check.</p></noscript>
+      <form data-question-builder hidden>
+        <div class="builder-fields">
+          <label>What I already understand<textarea name="known" rows="3" placeholder="For example: I know that HF uses orbitals."></textarea></label>
+          <label>Where I am stuck <span>(required)</span><textarea name="stuck" rows="3" required placeholder="Name the step, term, result, or contradiction that confuses you."></textarea></label>
+          <label>Evidence and context<textarea name="evidence" rows="3" placeholder="Relevant molecule, charge, spin, method, basis, units, code, or output."></textarea></label>
+          <label>What would help me?<select name="help"><option value="concept">A conceptual explanation</option><option value="comparison">A comparison of two ideas</option><option value="diagnosis">Help interpreting an error or result</option><option value="hint">One hint before the solution</option></select></label>
+        </div>
+        <button class="button primary" type="submit">Build my question</button>
+        <div class="builder-result" hidden><h3>Your question to copy</h3><pre id="built-question" tabindex="0"></pre><button class="copy-button" type="button" data-copy-target="built-question">Copy my question</button><p role="status" data-builder-status></p></div>
+      </form>
+    </section>
+    <section class="study-record chapter-section" aria-labelledby="record-title">
+      <h2 id="record-title">Keep a learning record.</h2>
+      <p>When you try a question, note the tool, model name shown in the app, and date. Save your question, the actual AI answer, the follow-up, and what you verified.</p>
+      <div class="record-fields"><label>Tool<input type="text" placeholder="For example: ChatGPT" autocomplete="off"></label><label>Model shown in your app<input type="text" placeholder="Enter the displayed model name" autocomplete="off"></label><label>Date<input type="date"></label></div>
+      <p class="chapter-note">These fields are a temporary reminder on this page. Copy them into your own notes before leaving; they are not saved.</p>
+    </section>
+    <section class="chapter-section chapter-references" id="references"><h2>Check the explanation.</h2><p>Use these references together with the actual inputs and outputs of your calculation.</p><ul><li><a href="https://psi4.github.io/psi4docs/master/optking.html">Psi4 optimisation, transition states, and IRC</a></li></ul><p><a href="https://developers.openai.com/api/docs/guides/prompt-engineering">General prompting guidance from OpenAI</a></p></section>
+    <nav class="chapter-navigation" aria-label="Chapter navigation"><a href="../index.html#curriculum">All chapters</a><a rel="prev" href="11_vibrations_thermochemistry.html">← Vibrations and thermochemistry</a><a rel="next" href="13_force_fields.html">Force fields and interaction potentials →</a></nav>
+    <p class="copy-status" role="status" aria-live="polite" data-copy-status></p>
+  </main>
+  <section class="supporters" aria-label="Project support and affiliation">
+    <div class="supporter supporter-rsc"><p class="supporter-label">Supported by RSC – EDI</p><a class="supporter-logo" href="https://www.rsc.org/policy-and-campaigning/science-culture"><img src="../assets/royal-society-of-chemistry.svg" alt="Royal Society of Chemistry" width="252" height="71"></a><p class="supporter-detail">Equality, Diversity &amp; Inclusion</p></div>
+    <div class="supporter supporter-liverpool"><a class="supporter-logo" href="https://www.liverpool.ac.uk/"><img src="../assets/university-of-liverpool.svg" alt="University of Liverpool" width="284" height="72"></a></div>
+  </section>
+  <footer class="chapter-footer"><a href="../index.html">AI4CompChem</a><p>Ask a better question. Build a clearer understanding.</p><a href="https://github.com/xueyongshef/AI4CompChem">Source on GitHub ↗</a></footer>
+  <script src="../script.js"></script><script src="../chapters.js"></script>
+</body>
+</html>

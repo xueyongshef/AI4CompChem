@@ -1,0 +1,664 @@
+{
+  "purpose": "Learn computational chemistry by asking precise questions, examining explanations, following up, and checking understanding.",
+  "answer_provenance": "The example answers are course-authored teaching examples, not recorded responses from a named external model.",
+  "model_guidance": "Use ChatGPT or another AI tutor, and record the tool, model name shown in the app, and date when you try a question.",
+  "prompt_framework": [
+    {
+      "label": "What I know",
+      "description": "State your level and the part you already understand."
+    },
+    {
+      "label": "Where I am stuck",
+      "description": "Identify one confusing term, step, result, or contradiction."
+    },
+    {
+      "label": "My evidence",
+      "description": "Include the relevant molecule, method, basis, units, code, or output."
+    },
+    {
+      "label": "Help I need",
+      "description": "Request an explanation, comparison, diagnostic question, or hint."
+    },
+    {
+      "label": "How I will check",
+      "description": "Ask for assumptions and a check against a reference, calculation, or self-test."
+    }
+  ],
+  "prompting_reference": [
+    "OpenAI prompt engineering",
+    "https://developers.openai.com/api/docs/guides/prompt-engineering"
+  ],
+  "chapters": [
+    {
+      "directory": "01_getting_started",
+      "references": [
+        [
+          "Python virtual environments",
+          "https://docs.python.org/3/tutorial/venv.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "My package is installed, but my notebook cannot import it.",
+          "confusion": "Why does Python not work?",
+          "prompt": "I am using a Jupyter notebook and get ModuleNotFoundError after installing a package in my terminal. Explain how the notebook kernel and terminal Python can differ. Ask for my operating system, the exact error, and the interpreter paths before suggesting a fix.",
+          "why": "It describes the symptom and asks for evidence that can separate several possible causes.",
+          "answer": "A notebook kernel may use a different Python environment from the terminal. First compare the notebook's sys.executable with the interpreter used for installation. Check the package name and installation message. Then select the intended kernel or install into that environment. The error alone does not identify which of these is responsible.",
+          "follow_up": "How can I verify that the notebook now uses the intended environment?",
+          "check_question": "Does a successful terminal installation prove the notebook can import the package?",
+          "check_answer": "No. The installation and notebook must use the same intended environment."
+        },
+        {
+          "title": "I do not know what information to include in a question.",
+          "confusion": "My calculation failed. Fix it.",
+          "prompt": "Help me write a useful troubleshooting question for a failed water calculation. Ask me for the software and version, input, charge, multiplicity, method, basis, relevant error text, and what I expected. Explain why each item matters.",
+          "why": "It turns a broad request into a reproducible description of the problem.",
+          "answer": "Start with the smallest input that reproduces the failure and the relevant error lines. State the intended calculation and what happened instead. Geometry, charge, multiplicity, method, basis, software, and version constrain the diagnosis. A useful first answer may ask for missing evidence rather than prescribe a change.",
+          "follow_up": "Which information should I collect first if I only have the error message?",
+          "check_question": "Can an AI diagnose every calculation failure from 'SCF failed'?",
+          "check_answer": "No. That symptom has several possible causes and needs context."
+        },
+        {
+          "title": "My result differs from someone else's.",
+          "confusion": "Which result is right?",
+          "prompt": "Two water calculations give different energies. Help me make a comparison table before deciding which is correct. Include geometry, charge, spin, method, basis, units, numerical settings, and software version. Do not invent either result.",
+          "why": "It asks whether the calculations are comparable before judging their outputs.",
+          "answer": "Different inputs can produce different legitimate results. Compare like quantities with matching units and definitions, then check the geometry, electronic state, method, basis, and numerical settings. A discrepancy becomes evidence of an error only after differences in the calculation setup are understood.",
+          "follow_up": "Which differences would change the physical model, and which concern numerical convergence?",
+          "check_question": "Is matching the molecule's name enough to compare two energies?",
+          "check_answer": "No. The geometry, electronic state, model, units, and settings also matter."
+        }
+      ]
+    },
+    {
+      "directory": "02_python",
+      "references": [
+        [
+          "NumPy broadcasting",
+          "https://numpy.org/doc/stable/user/basics.broadcasting.html"
+        ],
+        [
+          "Python errors and exceptions",
+          "https://docs.python.org/3/tutorial/errors.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I do not understand an array-shape error.",
+          "confusion": "Why does NumPy reject my calculation?",
+          "prompt": "My coordinate array has shape (3, 3), and I subtract an array of shape (2,). Explain why broadcasting fails by comparing the dimensions. Give me a hint about the intended operation before rewriting the code.",
+          "why": "It provides exact shapes and asks for an explanation tied to the operation.",
+          "answer": "NumPy compares dimensions from the right. Dimensions must be equal or one must be 1. Here the final dimensions are 3 and 2, so they are incompatible. Ask whether you intended to subtract a three-component displacement vector, select two coordinates, or do something else; the correct fix depends on that intention.",
+          "follow_up": "If I subtract one vector of shape (3,), what will the output shape be?",
+          "check_question": "Can an array of shape (3,) be subtracted from coordinates of shape (3, 3)?",
+          "check_answer": "Yes. It is broadcast across the rows, giving a result of shape (3, 3)."
+        },
+        {
+          "title": "I am mixing units and numerical values.",
+          "confusion": "Is this energy difference large?",
+          "prompt": "My toy energies are -75.000 and -74.990 hartree. Help me calculate the difference first, state the sign convention, and explain what I must know before calling it chemically important. Keep any unit conversion explicit.",
+          "why": "It separates arithmetic, units, and chemical interpretation.",
+          "answer": "Taking the second value minus the first gives +0.010 hartree. To interpret it, check whether the energies describe comparable states, geometries, and methods, and whether you need an electronic-energy or free-energy difference. Convert both the number and its unit using a documented factor. These toy values are not calculation results.",
+          "follow_up": "How would the sign change if I reversed the order of subtraction?",
+          "check_question": "Does subtracting two energies remove the need to report units?",
+          "check_answer": "No. Their difference still has an energy unit."
+        },
+        {
+          "title": "I want help debugging without losing the chance to learn.",
+          "confusion": "Write the correct code for me.",
+          "prompt": "A three-atom coordinate array gives IndexError when I request atom 3. Explain Python indexing and ask me to predict the valid indices. Give one hint before showing a corrected expression.",
+          "why": "It requests a limited hint and makes the learner practise the missing concept.",
+          "answer": "Python uses zero-based indexing. An array with three rows has row indices 0, 1, and 2. Index 3 requests a fourth row. First decide which atom you meant, then choose its corresponding row. Confirm the array shape and atom ordering rather than changing an index at random.",
+          "follow_up": "How can I select the final row without assuming the number of atoms?",
+          "check_question": "Which row is selected by index 0?",
+          "check_answer": "The first row."
+        }
+      ]
+    },
+    {
+      "directory": "03_molecules",
+      "references": [
+        [
+          "Psi4 molecule specification",
+          "https://psi4.github.io/psi4docs/master/psithonmol.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I confuse charge with spin multiplicity.",
+          "confusion": "What spin should I use?",
+          "prompt": "For neutral H2O and neutral OH, explain electron count, charge, total spin, and multiplicity separately. Use their usual ground-state assignments and ask me to count the electrons before giving the answer.",
+          "why": "It names the systems and distinguishes quantities that are easily confused.",
+          "answer": "Neutral water has ten electrons and its usual ground state is a closed-shell singlet, with multiplicity 1. Neutral OH has nine electrons and its usual ground state is a doublet, with multiplicity 2. Charge measures net electric charge; multiplicity is 2S + 1. A neutral molecule can have unpaired electrons.",
+          "follow_up": "What changes if I remove an electron from a neutral molecule?",
+          "check_question": "Does neutral always mean singlet?",
+          "check_answer": "No. Neutral OH is a counterexample."
+        },
+        {
+          "title": "My molecule looks much too large or too small.",
+          "confusion": "Are my coordinates wrong?",
+          "prompt": "My XYZ structure has unexpected bond lengths after import. Help me check coordinate units, atom order, and file interpretation before changing the geometry. Explain what I can and cannot infer from a bare XYZ file.",
+          "why": "It asks for checks of representation before changing the physical structure.",
+          "answer": "Standard XYZ-style coordinates commonly use angstrom, but a bare coordinate list may not declare units or electronic state. Check the generating program, importer settings, and one known interatomic distance. A consistent scale error can suggest a unit mismatch; it is not proof that the molecule should be reoptimised.",
+          "follow_up": "What additional information should accompany the XYZ file for a quantum calculation?",
+          "check_question": "Does a list of element symbols and coordinates uniquely specify charge and multiplicity?",
+          "check_answer": "No. Those must be supplied separately."
+        },
+        {
+          "title": "I am unsure whether two geometries are different conformers.",
+          "confusion": "These two structures look different. Which is better?",
+          "prompt": "Two coordinate files describe an isolated water molecule. Explain how to distinguish a rigid rotation or translation from a change in internal geometry. Ask me to compare bond lengths and the bond angle before comparing energies.",
+          "why": "It checks physical equivalence before treating a visual difference as chemistry.",
+          "answer": "For an isolated molecule without an external field, a rigid rotation or translation preserves its internal geometry and physical energy. Compare interatomic distances and angles, or align the structures. A changed bond length or angle represents an internal change. Tiny computed differences can also reflect numerical settings.",
+          "follow_up": "What other information would you need before comparing two molecular conformers?",
+          "check_question": "Does translating all atoms by the same vector change their bond lengths?",
+          "check_answer": "No. Pairwise separations remain the same."
+        }
+      ]
+    },
+    {
+      "directory": "04_quantum_foundations",
+      "references": [
+        [
+          "Psi4 Hartree–Fock theory",
+          "https://psi4.github.io/psi4docs/master/scf.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I cannot tell a wavefunction from an electron density.",
+          "confusion": "Are orbitals and electron density the same?",
+          "prompt": "Explain the difference between a many-electron wavefunction, a molecular orbital, and electron density at an introductory level. Use their variables and normalisation to distinguish them, then ask me one check question.",
+          "why": "It asks for explicit distinctions instead of an analogy that could hide them.",
+          "answer": "A many-electron wavefunction depends on all electronic coordinates and spin variables. An orbital is a one-electron function used to build approximate descriptions. Electron density describes the expected number of electrons per volume at a position; integrating it over space gives the electron count. A single orbital's squared magnitude is not generally the total density.",
+          "follow_up": "How is the density assembled from occupied orbitals in a closed-shell independent-particle picture?",
+          "check_question": "For a ten-electron system, what does the spatial integral of the electron density give?",
+          "check_answer": "Ten electrons."
+        },
+        {
+          "title": "I do not understand why the nuclei are held fixed.",
+          "confusion": "Why can we ignore nuclear motion?",
+          "prompt": "Explain the Born–Oppenheimer approximation using a bond-length scan. Describe what is solved at each fixed geometry, how the nuclei can move later, and when separating electronic and nuclear motion becomes less reliable.",
+          "why": "It asks about the approximation's role and limits, rather than treating nuclei as permanently frozen.",
+          "answer": "At each chosen nuclear geometry, solve an electronic problem parametrised by those nuclear positions. Electronic energy together with nuclear repulsion defines an energy surface for nuclear motion. Nuclear motion is then treated on that surface in the usual single-surface picture. Electronic-state coupling can matter near degeneracies or other nonadiabatic situations.",
+          "follow_up": "What quantity changes between the points of a bond-length scan?",
+          "check_question": "Does the approximation mean real nuclei never move?",
+          "check_answer": "No. It separates parts of the description of their motion."
+        },
+        {
+          "title": "Negative energies seem to mean that something is wrong.",
+          "confusion": "Why is the total energy negative?",
+          "prompt": "Explain why an isolated molecule can have a negative total energy relative to the chosen zero. Then explain why comparing raw total energies of different molecular compositions does not establish which is more stable.",
+          "why": "It asks about both the reference and the validity of a comparison.",
+          "answer": "An energy's sign depends on its zero. For a typical isolated electronic-structure calculation, attractive binding can give a negative total energy relative to separated free charges. A larger molecule often has a more negative total energy simply because it contains more particles. Chemical stability requires a defined comparison, such as a balanced reaction with consistently computed energies.",
+          "follow_up": "How would you define an energy change for a balanced dissociation reaction?",
+          "check_question": "Does the most negative total energy among molecules with different compositions identify the most stable substance?",
+          "check_answer": "No. The comparison needs a chemically defined reference."
+        }
+      ]
+    },
+    {
+      "directory": "05_basis_sets",
+      "references": [
+        [
+          "Psi4 basis sets",
+          "https://psi4.github.io/psi4docs/master/basissets.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I confuse the method with the basis set.",
+          "confusion": "Is a basis set another method?",
+          "prompt": "Using HF/6-31G, HF/cc-pVDZ, and B3LYP/6-31G, identify which part describes the electronic-structure approximation and which part describes the orbital expansion. Explain what is held fixed in each comparison.",
+          "why": "It uses named examples to separate two independent choices.",
+          "answer": "HF and B3LYP specify electronic-structure approximations. The basis supplies functions used to represent orbitals. Moving from HF/6-31G to HF/cc-pVDZ changes the basis; moving from HF/6-31G to B3LYP/6-31G changes the method while keeping that basis. A larger basis does not turn HF into a correlated wavefunction method.",
+          "follow_up": "Which settings would you hold fixed in a basis-convergence study?",
+          "check_question": "What changes between HF/6-31G and HF/cc-pVDZ?",
+          "check_answer": "The basis set."
+        },
+        {
+          "title": "Polarisation and diffuse functions sound similar.",
+          "confusion": "Which extra functions do I need?",
+          "prompt": "Explain polarisation and diffuse functions separately, using a bent neutral molecule and an anion as motivating examples. Describe what each adds to the orbital description and how I could check whether it matters for my target property.",
+          "why": "It requests mechanisms and a property-specific check, rather than a universal recipe.",
+          "answer": "Polarisation functions add angular flexibility so an orbital description can respond to molecular bonding. Diffuse functions extend spatial flexibility farther from nuclei, which can matter for anions and other spatially extended distributions. Their practical importance depends on the system and property. Compare suitable basis choices systematically rather than treating one addition as a substitute for the other.",
+          "follow_up": "Why might a small change in total energy still accompany an important change in a property?",
+          "check_question": "Are diffuse functions simply another name for higher angular momentum functions?",
+          "check_answer": "No. Radial extent and angular flexibility are different features."
+        },
+        {
+          "title": "A larger basis gave a different energy.",
+          "confusion": "Does a lower energy always mean a better answer?",
+          "prompt": "Explain when the variational principle predicts a non-increasing HF energy as a basis is enlarged. State the assumptions about nested spaces and comparable converged solutions, and explain why this does not prove chemical accuracy.",
+          "why": "It asks for the conditions behind a familiar rule.",
+          "answer": "For the same Hamiltonian and HF variational class, enlarging a nested orbital space cannot raise the globally minimised HF energy. Practical comparisons may use non-nested bases or different stationary SCF solutions. Even a converged basis expansion retains the method's approximations. Accuracy in a reaction energy or another property therefore needs its own assessment.",
+          "follow_up": "How would you distinguish basis incompleteness from missing electron correlation?",
+          "check_question": "Does basis convergence remove HF's remaining electron-correlation error?",
+          "check_answer": "No. Method and basis errors are distinct."
+        }
+      ]
+    },
+    {
+      "directory": "06_hartree_fock",
+      "references": [
+        [
+          "Psi4 Hartree–Fock theory",
+          "https://psi4.github.io/psi4docs/master/scf.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I cannot see why SCF needs repeated calculations.",
+          "confusion": "Why does Hartree–Fock repeat itself?",
+          "prompt": "For closed-shell water in a fixed basis, explain an SCF cycle using orbitals, density, and the Fock operator. Identify what is updated and why the starting orbitals are not usually the final solution. Keep it conceptual before introducing equations.",
+          "why": "It fixes the system and asks which quantities depend on each other.",
+          "answer": "The orbitals determine an electron density, and that density determines the mean-field operator used to obtain new orbitals. SCF iterates this dependency until selected changes or residuals satisfy thresholds. These iterations are a numerical solution procedure, not a movie of electrons moving through time.",
+          "follow_up": "What would it mean for the input and output densities of an iteration to agree?",
+          "check_question": "Is an SCF iteration a molecular-dynamics time step?",
+          "check_answer": "No. It updates an approximate electronic solution."
+        },
+        {
+          "title": "I think HF ignores electron–electron interaction.",
+          "confusion": "Does HF leave out all electron repulsion?",
+          "prompt": "Distinguish Coulomb interaction, exchange, and electron correlation in Hartree–Fock. Explain which effects arise in a single-determinant description and which remain missing relative to an exact solution of the same electronic Hamiltonian.",
+          "why": "It identifies a specific misconception and asks for separate definitions.",
+          "answer": "HF includes electron–electron Coulomb interaction in a mean-field description and exchange associated with an antisymmetric determinant. It does not supply all the remaining electron correlation of an exact many-electron solution. 'HF neglects electron interaction' is therefore misleading; the issue is the approximation used to describe that interaction.",
+          "follow_up": "Why would increasing the orbital basis not automatically recover the missing correlation?",
+          "check_question": "Does HF include exchange?",
+          "check_answer": "Yes. Exchange is present in its antisymmetric single-determinant description."
+        },
+        {
+          "title": "The output says converged, so I assume the result is correct.",
+          "confusion": "Is a converged HF calculation accurate?",
+          "prompt": "My water RHF calculation converged. Help me separate numerical convergence from physical and chemical accuracy. Ask about the geometry, charge, multiplicity, basis, SCF solution, and property I want to predict before judging the result.",
+          "why": "It asks what was actually established by the success message.",
+          "answer": "Convergence establishes that the selected numerical criteria were met for a particular model and solution. It does not validate the electronic state, establish the appropriate SCF solution, or eliminate basis and method errors. Check the input and the target property, then use suitable convergence studies and comparisons.",
+          "follow_up": "What evidence would support a claim that a predicted bond length is reliable?",
+          "check_question": "Can tightening SCF thresholds alone make HF exact?",
+          "check_answer": "No. It changes numerical tolerance, not the underlying approximation."
+        }
+      ]
+    },
+    {
+      "directory": "07_electron_correlation",
+      "references": [
+        [
+          "Psi4 MP2 theory",
+          "https://psi4.github.io/psi4docs/master/dfmp2.html"
+        ],
+        [
+          "Psi4 methods and capabilities",
+          "https://psicode.org/psi4manual/master/introduction"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I think a complete basis makes HF exact.",
+          "confusion": "What remains after fixing the basis?",
+          "prompt": "Explain basis incompleteness and electron correlation as two separate issues. Compare converging an HF calculation with increasing basis size against changing from HF to a post-HF method at a fixed basis.",
+          "why": "It varies one modelling choice at a time.",
+          "answer": "A more complete basis improves the representation available to a chosen method. HF still restricts the wavefunction to its single-determinant form. Post-HF methods add descriptions of correlation beyond that reference, but retain their own approximations and basis dependence. Both choices must be considered when judging a result.",
+          "follow_up": "What would a two-dimensional comparison across methods and basis sizes tell me?",
+          "check_question": "Is the HF basis-set limit generally the exact many-electron energy?",
+          "check_answer": "No. Correlation beyond HF remains."
+        },
+        {
+          "title": "The MP2 energy is lower, but I do not know what that proves.",
+          "confusion": "Is the lowest computed energy always best?",
+          "prompt": "Explain why a lower MP2 total energy than HF does not by itself establish greater accuracy. State whether MP2 is variational and discuss what comparison would be relevant for my target property.",
+          "why": "It tests a claimed conclusion instead of accepting a numerical ranking.",
+          "answer": "MP2 adds a perturbative correlation correction to an HF reference and is not a variational upper-bound method. A lower value alone cannot certify proximity to the exact energy. Check the reference's suitability and compare the property of interest with trustworthy benchmarks or convergence evidence.",
+          "follow_up": "What problems can appear when the HF reference has small orbital-energy gaps?",
+          "check_question": "Does MP2 guarantee an energy above the exact ground-state energy?",
+          "check_answer": "No. MP2 is not variational."
+        },
+        {
+          "title": "I am unsure why stretching a bond causes trouble.",
+          "confusion": "Why not use the same single-reference method everywhere?",
+          "prompt": "Use stretched H2 to explain why one closed-shell determinant can become a poor reference. Describe the role of nearly degenerate configurations and explain why an apparently converged result is not sufficient evidence of reliability.",
+          "why": "It asks for a failure mechanism in a concrete system.",
+          "answer": "As the bond stretches, configurations that are well separated near equilibrium can become comparably important. A single closed-shell determinant then struggles to describe the electronic structure. A method built on that reference may also struggle. Numerical convergence is a separate question from whether the electronic description is appropriate.",
+          "follow_up": "Why is allowing spin-symmetry breaking not automatically a complete validation of the result?",
+          "check_question": "Does successful SCF convergence prove a stretched-bond reference is adequate?",
+          "check_answer": "No. The quality of the reference needs separate assessment."
+        }
+      ]
+    },
+    {
+      "directory": "08_dft",
+      "references": [
+        [
+          "Psi4 DFT",
+          "https://psi4.github.io/psi4docs/master/dft.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I heard DFT does not use orbitals.",
+          "confusion": "Why does my DFT output contain orbitals?",
+          "prompt": "Explain the distinction between electron density and the auxiliary orbitals of Kohn–Sham DFT. Compare this with HF at an introductory level without treating the two energy expressions as identical.",
+          "why": "It names the formulation and resolves an apparent contradiction in the output.",
+          "answer": "Kohn–Sham DFT commonly uses auxiliary orbitals to construct the density and part of the energy. Its exchange-correlation contribution is described through a functional, approximated in practical calculations. Thus, 'DFT uses density' does not mean a Kohn–Sham program never solves orbital equations.",
+          "follow_up": "Which parts of a practical Kohn–Sham calculation depend on the chosen functional?",
+          "check_question": "Is seeing orbitals in a DFT output inconsistent with Kohn–Sham DFT?",
+          "check_answer": "No. Orbitals are part of that formulation."
+        },
+        {
+          "title": "I do not know which settings are being compared.",
+          "confusion": "Why do two DFT calculations disagree?",
+          "prompt": "Help me compare two DFT calculations on the same molecule. Separate geometry and electronic state, functional, basis, grid, dispersion treatment, and convergence settings before interpreting the energy difference.",
+          "why": "It prevents several changed settings being mistaken for a single effect.",
+          "answer": "A difference can reflect the physical setup, model, or numerical approximation. Make a table of these settings and identify which vary. To isolate a functional change, keep the other relevant choices controlled and document any functional-dependent conventions. No particular cause can be diagnosed without the actual inputs and outputs.",
+          "follow_up": "Which settings would you vary first to check numerical convergence?",
+          "check_question": "Is the integration grid the same thing as the orbital basis?",
+          "check_answer": "No. They serve different roles."
+        },
+        {
+          "title": "An AI recommends one functional for everything.",
+          "confusion": "Which functional is the best?",
+          "prompt": "I want to predict [property] for [system]. Ask me about bonding, charge, spin, environment, and available benchmarks before discussing functional choices. Explain the evidence and limits behind any recommendation.",
+          "why": "It supplies a target and requests evidence instead of a universal ranking.",
+          "answer": "A useful recommendation depends on the chemical problem and property. Performance on one benchmark does not establish performance on every bonding regime or observable. First define the task, then examine relevant validation and practical settings. A functional's name or popularity is not sufficient evidence.",
+          "follow_up": "What benchmark would resemble my intended application closely enough to be useful?",
+          "check_question": "Can one benchmark score guarantee the best functional for every molecule and property?",
+          "check_answer": "No. The evidence must be relevant to the intended task."
+        }
+      ]
+    },
+    {
+      "directory": "09_potential_energy_surfaces",
+      "references": [
+        [
+          "Psi4 geometry optimisation and scans",
+          "https://psi4.github.io/psi4docs/master/optking.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I cannot tell a scan from a full surface.",
+          "confusion": "Is a bond-length plot the entire PES?",
+          "prompt": "Explain the difference between a potential energy surface and a one-dimensional bond-length scan for a polyatomic molecule. Then distinguish a fixed-coordinate scan from a relaxed scan, stating which variables can change.",
+          "why": "It specifies the dimensionality and the constraints on the calculation.",
+          "answer": "A PES assigns an energy to molecular geometries under a defined electronic description. A one-dimensional scan samples a selected coordinate. In a fixed-coordinate scan the remaining coordinates are held fixed; in a relaxed scan selected remaining coordinates are optimised under the scan constraint. The resulting curves need not coincide.",
+          "follow_up": "Could a low point on a constrained scan still fail to be a full molecular minimum?",
+          "check_question": "Does a one-dimensional scan explore every internal degree of freedom?",
+          "check_answer": "No. It follows a chosen slice or constrained path."
+        },
+        {
+          "title": "I confuse the sign of the force with the slope.",
+          "confusion": "Does a positive energy mean a positive force?",
+          "prompt": "For the toy potential U(x) = k*x^2/2 with k positive, explain F = -dU/dx. Determine the force direction at x greater than zero and distinguish the energy value from its gradient.",
+          "why": "It gives an explicit potential and asks about direction instead of vague signs.",
+          "answer": "Differentiating gives dU/dx = k*x, so F = -k*x. At positive x the force points toward decreasing x, back toward the minimum. Shifting all energies by a constant changes U but not its gradient or the force. The force is set by slope, not by the sign of the energy.",
+          "follow_up": "What is the force at x = 0?",
+          "check_question": "If I add a constant to every energy, does the force change?",
+          "check_answer": "No. The derivative of a constant is zero."
+        },
+        {
+          "title": "I use potential energy and free energy interchangeably.",
+          "confusion": "Is the lowest-energy geometry always the most populated?",
+          "prompt": "Explain the difference between a PES and a finite-temperature free-energy profile. Use the number of accessible configurations to explain why a potential-energy minimum alone does not determine a population.",
+          "why": "It asks about what is averaged over and which thermodynamic information is missing.",
+          "answer": "A PES describes energy at specified geometries. A free-energy profile incorporates statistical weighting over configurations compatible with a selected coordinate and conditions. A region can have favourable population because it contains many accessible configurations. Defining the ensemble, temperature, and coordinate is essential when interpreting that profile.",
+          "follow_up": "What information would I need to turn a trajectory histogram into a free-energy estimate?",
+          "check_question": "Can a single geometry's potential energy alone establish its finite-temperature population?",
+          "check_answer": "No. Accessible configurations and statistical conditions also matter."
+        }
+      ]
+    },
+    {
+      "directory": "10_geometry_optimisation",
+      "references": [
+        [
+          "Psi4 geometry optimisation",
+          "https://psi4.github.io/psi4docs/master/optking.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I cannot tell an energy calculation from an optimisation.",
+          "confusion": "Why did the program not improve my geometry?",
+          "prompt": "Explain the difference between a single-point calculation and geometry optimisation. Describe whether the nuclear coordinates change and what evidence in an output distinguishes the two jobs.",
+          "why": "It asks what operation the program was instructed to perform.",
+          "answer": "A single-point calculation evaluates a chosen electronic model at the supplied geometry. Geometry optimisation changes nuclear coordinates to approach a stationary structure according to an algorithm and convergence criteria. A successful single point says nothing about whether the starting geometry is a minimum.",
+          "follow_up": "Can I evaluate several methods at the same optimised geometry?",
+          "check_question": "Does a converged single-point energy imply that the molecular geometry was optimised?",
+          "check_answer": "No. The coordinates may never have been varied."
+        },
+        {
+          "title": "The energy stopped changing, but the optimiser continues.",
+          "confusion": "Why is a small energy change not enough?",
+          "prompt": "My optimisation has a small energy change but a gradient criterion is unmet. Explain energy, gradient, and displacement criteria conceptually. Ask for the relevant convergence table before suggesting changes.",
+          "why": "It identifies the actual unmet criterion and requests the evidence needed to interpret it.",
+          "answer": "Near a shallow region, successive energies can differ little while forces or geometry steps remain significant. Optimisation programs therefore check more than energy changes. Read all required criteria and the step history. First establish whether progress is normal, oscillatory, or limited by numerical noise before changing thresholds.",
+          "follow_up": "What would a persistent large gradient tell us?",
+          "check_question": "Can an almost unchanged energy coexist with an unmet force criterion?",
+          "check_answer": "Yes. They measure different aspects of progress."
+        },
+        {
+          "title": "Different starting geometries reach different structures.",
+          "confusion": "Which optimised structure is the answer?",
+          "prompt": "Two initial conformers converge to different geometries at the same method and basis. Explain local and global minima, propose checks of stationary-point character, and describe what a fair energy comparison requires.",
+          "why": "It treats the starting geometry and search problem as part of the scientific question.",
+          "answer": "An optimiser commonly finds a nearby local stationary structure. Multiple valid minima may exist, and one optimisation does not establish a global minimum. Check convergence and vibrational character, compare compatible energies, and explore additional conformers where relevant. The appropriate ranking may require thermal and environmental contributions.",
+          "follow_up": "How would conformational sampling change my search strategy?",
+          "check_question": "Does reaching a local minimum prove there is no lower minimum elsewhere?",
+          "check_answer": "No. A local search does not establish the global landscape."
+        }
+      ]
+    },
+    {
+      "directory": "11_vibrations_thermochemistry",
+      "references": [
+        [
+          "Psi4 harmonic vibrational analysis",
+          "https://psi4.github.io/psi4docs/master/freq.html"
+        ],
+        [
+          "Psi4 thermochemistry",
+          "https://psi4.github.io/psi4docs/master/thermo.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I do not understand how many vibrations a molecule has.",
+          "confusion": "Why is the mode count different for water and CO2?",
+          "prompt": "Count vibrational modes for isolated nonlinear H2O and linear CO2. Explain the translational and rotational degrees of freedom and distinguish the number of modes from the number of distinct frequencies.",
+          "why": "It supplies molecular geometry and separates two ways of counting.",
+          "answer": "A nonlinear N-atom molecule has 3N - 6 vibrational modes, giving three for water. A linear molecule has 3N - 5, giving four for CO2. Two CO2 bending modes are degenerate in the ideal linear molecule, so four modes need not mean four distinct frequencies.",
+          "follow_up": "How would you classify the two degenerate bending motions?",
+          "check_question": "How many vibrational modes does linear CO2 have?",
+          "check_answer": "Four, including two degenerate bending modes."
+        },
+        {
+          "title": "A small imaginary frequency worries me.",
+          "confusion": "Should I delete the imaginary frequency?",
+          "prompt": "My intended minimum has a small imaginary frequency. Explain how the mode, geometry convergence, numerical settings, and possible constraints affect interpretation. Ask me to inspect the mode before deciding what action to take.",
+          "why": "It requests a diagnosis rather than discarding inconvenient evidence.",
+          "answer": "An imaginary harmonic frequency corresponds to negative curvature in the analysed vibrational direction. A small value can require checks of numerical accuracy or geometry convergence; it must not simply be deleted. Inspect the motion, any constraints, and relevant settings, then determine whether a genuine unstable direction remains.",
+          "follow_up": "What would a large imaginary mode involving a substantial structural change suggest?",
+          "check_question": "Does a small imaginary frequency alone prove that the intended minimum is acceptable?",
+          "check_answer": "No. Its origin and mode need investigation."
+        },
+        {
+          "title": "I confuse electronic energy with Gibbs free energy.",
+          "confusion": "Can I call my electronic-energy difference a free energy?",
+          "prompt": "Explain the contributions required to compare molecular Gibbs free energies from electronic-structure calculations. State temperature, pressure or standard state, and the treatment of low-frequency modes, and separate these from the electronic energy.",
+          "why": "It asks for the definition and assumptions of the quantity being reported.",
+          "answer": "A molecular thermochemistry model combines electronic energy with zero-point and thermal contributions and entropy. Temperature, standard state, and approximations for translation, rotation, and vibration matter. Low-frequency modes can make the harmonic treatment sensitive. An electronic-energy difference alone is not a Gibbs free-energy difference.",
+          "follow_up": "Which corrections cancel, and which must be computed, for my specific reaction?",
+          "check_question": "Can I report a bare electronic-energy barrier as a Gibbs free-energy barrier?",
+          "check_answer": "No. It must be labelled as an electronic-energy barrier."
+        }
+      ]
+    },
+    {
+      "directory": "12_reaction_paths",
+      "references": [
+        [
+          "Psi4 transition states and IRC",
+          "https://psi4.github.io/psi4docs/master/optking.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I found one imaginary mode and assume the reaction is solved.",
+          "confusion": "Does one imaginary frequency prove the intended transition state?",
+          "prompt": "Explain how to assess a candidate first-order saddle point. Include stationarity, the relevant imaginary mode, and checking its connection to the intended reactant and product, for example using IRC calculations and endpoint optimisation.",
+          "why": "It asks whether mathematical character and chemical connectivity both match the intended reaction.",
+          "answer": "One relevant unstable vibrational direction supports first-order saddle character when stationarity and numerical quality are established. It does not identify the connected species by itself. Inspect the mode and follow suitable paths in both directions, then characterise their endpoints. The resulting connection must match the reaction being proposed.",
+          "follow_up": "What would I conclude if the two endpoints belonged to an unintended rearrangement?",
+          "check_question": "Does counting imaginary frequencies determine the identities of the reactant and product?",
+          "check_answer": "No. Connectivity requires separate checks."
+        },
+        {
+          "title": "I mix up forward and reverse barriers.",
+          "confusion": "Which barrier should I subtract?",
+          "prompt": "Use a toy electronic-energy diagram with reactant 0, transition state 40, and product -10 kJ/mol. Calculate forward and reverse electronic barriers with explicit reference states, and explain why these values are not automatically free-energy barriers.",
+          "why": "It supplies a complete sign convention and labels the energy type.",
+          "answer": "The forward electronic barrier is 40 - 0 = 40 kJ/mol. The reverse barrier is 40 - (-10) = 50 kJ/mol. The reaction electronic energy is -10 kJ/mol in the forward direction. These arithmetic examples describe the supplied toy diagram; thermal and entropy contributions would be needed for free-energy barriers.",
+          "follow_up": "How would the two barriers change if every energy were shifted by the same constant?",
+          "check_question": "What is the reverse barrier in the toy diagram?",
+          "check_answer": "50 kJ/mol, measured from product to transition state."
+        },
+        {
+          "title": "I think an IRC is a molecular movie.",
+          "confusion": "Does an IRC predict the actual time evolution?",
+          "prompt": "Compare an intrinsic reaction coordinate with a bond scan and a molecular-dynamics trajectory. Explain what each path represents, whether it has physical time, and how it helps test a reaction hypothesis.",
+          "why": "It distinguishes different meanings of a path through molecular configurations.",
+          "answer": "An IRC follows a particular steepest-descent path from a saddle point in mass-weighted coordinates. A bond scan follows a chosen constraint. A dynamics trajectory follows equations of motion with a time parameter. An IRC can help establish connectivity, but is not a finite-temperature movie or a full kinetic prediction.",
+          "follow_up": "What additional ingredients would a finite-temperature rate calculation require?",
+          "check_question": "Does an IRC step correspond to a fixed amount of physical time?",
+          "check_answer": "No. IRC progress is not a dynamics time coordinate."
+        }
+      ]
+    },
+    {
+      "directory": "13_force_fields",
+      "references": [
+        [
+          "GROMACS bonded interactions",
+          "https://manual.gromacs.org/documentation/current/reference-manual/functions/bonded-interactions.html"
+        ],
+        [
+          "GROMACS non-bonded interactions",
+          "https://manual.gromacs.org/documentation/current/reference-manual/functions/nonbonded-interactions.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I do not understand what a force field adds together.",
+          "confusion": "Is a force field just a Lennard–Jones potential?",
+          "prompt": "Describe a typical molecular force field using bond, angle, torsion, Lennard–Jones, and Coulomb terms. Explain why the topology and non-bonded exclusions or scaling rules must match the parameter set.",
+          "why": "It asks for the whole model and the conventions connecting its parts.",
+          "answer": "A molecular force field commonly combines bonded and non-bonded terms, with parameters and conventions designed to work together. Topology determines which interactions apply. Some nearby bonded pairs are excluded or scaled in non-bonded calculations. A Lennard–Jones term alone does not represent this entire molecular model.",
+          "follow_up": "What would happen if I counted an interaction twice by ignoring the exclusions?",
+          "check_question": "Does a Lennard–Jones pair term include every bonded and electrostatic interaction?",
+          "check_answer": "No. Those require their own specified terms and conventions."
+        },
+        {
+          "title": "I confuse sigma with the equilibrium separation.",
+          "confusion": "Why is the Lennard–Jones minimum not at sigma?",
+          "prompt": "For U(r) = 4*epsilon*((sigma/r)^12 - (sigma/r)^6), show briefly where the energy crosses zero and where its minimum occurs. Distinguish sigma from the minimum position and epsilon from a distance.",
+          "why": "It specifies the convention, making the parameter meanings checkable.",
+          "answer": "At r = sigma the two powers cancel, so U = 0. Setting the derivative to zero gives r_min = 2^(1/6)*sigma, approximately 1.122*sigma. At that separation U = -epsilon. Sigma is a length parameter, while epsilon sets the well depth in energy units.",
+          "follow_up": "Which parameter would I change to deepen the well without moving its minimum?",
+          "check_question": "Is the energy at r = sigma equal to -epsilon?",
+          "check_answer": "No. It is zero for the stated convention."
+        },
+        {
+          "title": "My force curve has the wrong sign or units.",
+          "confusion": "Can I use the potential energy as the force?",
+          "prompt": "For a pair potential U(r), explain the radial force convention F_r = -dU/dr. State the force units when energy is in kJ/mol and distance in nm, and relate the sign to attraction and repulsion.",
+          "why": "It fixes the coordinate and units before discussing the derivative.",
+          "answer": "The radial force is the negative derivative of energy with respect to separation. Its units are kJ/mol/nm for the stated quantities. With increasing r as the positive radial direction, a negative radial force is attractive and a positive one repulsive. At a potential minimum the derivative and radial force vanish.",
+          "follow_up": "How could I check an analytic force against a small finite difference in energy?",
+          "check_question": "What is the radial force at a smooth potential minimum?",
+          "check_answer": "Zero."
+        }
+      ]
+    },
+    {
+      "directory": "14_molecular_dynamics",
+      "references": [
+        [
+          "GROMACS molecular-dynamics algorithms",
+          "https://manual.gromacs.org/documentation/current/reference-manual/algorithms/molecular-dynamics.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "My NVE total energy drifts.",
+          "confusion": "Should I just add a thermostat?",
+          "prompt": "My intended NVE simulation shows total-energy drift. Help me design checks of time step, integration settings, constraints, force evaluation, and initial equilibration. Explain why adding a thermostat changes the diagnostic problem.",
+          "why": "It preserves the intended ensemble and requests a controlled investigation.",
+          "answer": "In an ideal isolated conservative system, total energy is conserved. Numerical integration and force approximations can cause deviations. Compare appropriately equilibrated runs at smaller time steps and inspect relevant settings and energy traces. A thermostat exchanges energy with a bath and changes the ensemble; it can hide a symptom without identifying its cause.",
+          "follow_up": "What would a systematic reduction of drift with time step suggest, and what would it not prove?",
+          "check_question": "Does stable temperature after adding a thermostat prove that the original NVE integration was accurate?",
+          "check_answer": "No. The thermostat can exchange energy."
+        },
+        {
+          "title": "The thermostat does not keep every temperature value identical.",
+          "confusion": "Why is the temperature fluctuating in NVT?",
+          "prompt": "Explain instantaneous kinetic temperature and canonical fluctuations. Distinguish a target temperature from a value that must be identical at every frame, and explain what diagnostics depend on the thermostat used.",
+          "why": "It distinguishes a statistical target from an instantaneous constraint.",
+          "answer": "An NVT simulation aims to sample a distribution at a specified temperature. Instantaneous kinetic energy, and therefore a kinetic-temperature estimate, generally fluctuates. The expected behaviour depends on system size, degrees of freedom, and thermostat algorithm. Judge averages, fluctuations, and sampling rather than requiring every frame to equal the target.",
+          "follow_up": "How would changing the number of degrees of freedom affect my interpretation?",
+          "check_question": "Does NVT require the instantaneous kinetic temperature to be exactly constant?",
+          "check_answer": "No. Canonical sampling includes fluctuations."
+        },
+        {
+          "title": "I do not know whether a trajectory is equilibrated.",
+          "confusion": "My trajectory is long. Is it enough?",
+          "prompt": "Help me assess equilibration and sampling for [observable] in [system]. Ask for time traces, initial conditions, run length, and independent runs. Explain why one apparently stable trace cannot prove global equilibrium.",
+          "why": "It names the observable and asks for evidence of both relaxation and exploration.",
+          "answer": "Inspect relevant observables for initial relaxation and compare production estimates across blocks and independent starts. A system may remain trapped in one region while a trace appears stationary. Adequate sampling is property-dependent; elapsed simulation time alone does not establish it.",
+          "follow_up": "Which slow process could affect my observable without being obvious in the total-energy trace?",
+          "check_question": "Can a flat-looking energy trace prove that all important conformations were sampled?",
+          "check_answer": "No. Other slow degrees of freedom may remain unexplored."
+        }
+      ]
+    },
+    {
+      "directory": "15_statistical_mechanics",
+      "references": [
+        [
+          "GROMACS statistical-mechanics background",
+          "https://manual.gromacs.org/documentation/current/reference-manual/algorithms/molecular-dynamics.html"
+        ]
+      ],
+      "questions": [
+        {
+          "title": "I expect the lowest-energy state to have the largest population.",
+          "confusion": "Can a higher-energy group of states be more populated?",
+          "prompt": "Consider a toy model with two groups: energy 0 and degeneracy 1, and energy 2*k_B*T and degeneracy 10. Calculate their canonical population ratio and explain the role of degeneracy.",
+          "why": "It states the statistical model and includes the missing count of accessible states.",
+          "answer": "The higher-to-lower group population ratio is (10/1)*exp(-2), about 1.35. The higher-energy group therefore has about 57.5% of the total population in this two-group model. Its greater degeneracy outweighs its energy penalty. This is a toy calculation, not a simulated molecular population.",
+          "follow_up": "What happens to the ratio if the higher group's degeneracy is reduced to 1?",
+          "check_question": "Is a lower energy alone sufficient to rank group populations?",
+          "check_answer": "No. Statistical weights include the number of accessible states."
+        },
+        {
+          "title": "I assume every saved frame is an independent sample.",
+          "confusion": "Why does a huge trajectory still have uncertainty?",
+          "prompt": "Explain time correlation and effective sample size for an observable in an MD trajectory. Suggest how block analysis and independent runs can help, and avoid inventing a correlation time without data.",
+          "why": "It asks for a property-specific uncertainty estimate supported by measurements.",
+          "answer": "Nearby frames often retain memory of each other. Consequently, the number of independent observations can be much smaller than the number saved. Correlation analysis and suitably chosen blocks can help estimate uncertainty, with sufficient data and attention to stationarity. Saving more frequent frames does not by itself generate more independent information.",
+          "follow_up": "How would I check that increasing a block length has reached a useful uncertainty plateau?",
+          "check_question": "Does doubling the number of saved frames by halving the save interval necessarily double independent information?",
+          "check_answer": "No. Closely spaced frames may be strongly correlated."
+        },
+        {
+          "title": "I want to turn a histogram into free energy.",
+          "confusion": "Can I always take minus log of my histogram?",
+          "prompt": "Explain F(s) = -k_B*T*ln P(s) + C for a specified coordinate and probability measure. Discuss sampling, zero-count bins, and why radial distributions may require a geometric measure correction.",
+          "why": "It supplies the coordinate issue and asks about the assumptions behind a transformation.",
+          "answer": "A free-energy profile is related to the equilibrium probability density under a defined measure. Finite sampling, bin choice, and correlations affect its estimate. A zero-count bin indicates missing observed samples, not a measured infinite barrier. Radial coordinates include geometric volume factors, so a radial histogram and a radial distribution function must be distinguished.",
+          "follow_up": "Which probability density does my histogram estimate, and does it include a radial volume factor?",
+          "check_question": "Does an empty histogram bin establish an infinite physical free-energy barrier?",
+          "check_answer": "No. It may simply be unsampled."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Learn Quantum chemistry foundations by asking better AI questions, comparing worked answers, and checking your understanding.">
+  <title>Quantum chemistry foundations | Ask AI | AI4CompChem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../chapters.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html"><span class="brand-mark"><i></i><i></i><i></i></span><span>AI4<span>CompChem</span></span></a>
+    <button class="menu-button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="site-nav"><a href="../index.html#curriculum">All chapters</a><a href="#ask-ai">Ask AI</a><a href="#references">References</a><a class="github-link" href="https://github.com/xueyongshef/AI4CompChem">GitHub ↗</a></nav>
+  </header>
+  <main class="chapter-main" id="top">
+    <header class="chapter-heading">
+      <a class="chapter-back" href="../index.html#foundations">← Foundations</a>
+      <p class="section-label">Chapter 04 · Foundations</p>
+      <h1>Quantum chemistry foundations</h1>
+      <p class="chapter-subtitle">Wavefunctions · Hamiltonians · Born–Oppenheimer</p>
+      <p class="chapter-intro">Learn the chemistry by turning a sticking point into a precise question, examining an answer, and explaining the idea yourself.</p>
+      <a class="button primary" href="#ask-ai">Explore three worked questions ↓</a>
+    </header>
+    <section class="chapter-overview chapter-section" aria-label="Chapter outline">
+      <div><h2>What you will learn</h2><ul><li>Identify the electronic and nuclear contributions in a molecular Hamiltonian.</li><li>Explain the purpose of the Born–Oppenheimer approximation and molecular orbitals.</li></ul></div>
+      <details class="lesson-plan"><summary>Video and exercise plan</summary><p>Videos, full explanatory lessons, and runnable exercises are in preparation. The Ask AI examples below are available to study now.</p><h3>Planned short videos</h3><ol><li>What does a wavefunction describe?</li><li>Separating electronic and nuclear motion</li></ol><h3>Planned exercise</h3><p>Annotate the terms in a molecular Hamiltonian and sketch how a molecule changes when its nuclei move.</p></details>
+    </section>
+    <section class="chapter-section" id="ask-ai" aria-labelledby="ask-ai-title">
+      <p class="section-label">A separate space for your questions</p><h2 id="ask-ai-title">Ask AI when you get stuck.</h2>
+      <p>Choose a problem below. Adapt the question to your situation, try it in your AI tool, then compare the explanation and use the self-check.</p>
+      <p class="example-note"><strong>About the answers:</strong> The example answers are course-authored teaching examples, not recorded responses from a named external model. Use ChatGPT or another AI tutor, and record the tool, model name shown in the app, and date when you try a question.</p>
+      <ol class="question-framework"><li><strong>What I know</strong><span>State your level and the part you already understand.</span></li><li><strong>Where I am stuck</strong><span>Identify one confusing term, step, result, or contradiction.</span></li><li><strong>My evidence</strong><span>Include the relevant molecule, method, basis, units, code, or output.</span></li><li><strong>Help I need</strong><span>Request an explanation, comparison, diagnostic question, or hint.</span></li><li><strong>How I will check</strong><span>Ask for assumptions and a check against a reference, calculation, or self-test.</span></li></ol>
+      <nav class="question-index" aria-label="Common sticking points"><a href="#question-1">01 · I cannot tell a wavefunction from an electron density.</a><a href="#question-2">02 · I do not understand why the nuclei are held fixed.</a><a href="#question-3">03 · Negative energies seem to mean that something is wrong.</a></nav>
+      <article class="question-card" id="question-1" aria-labelledby="question-title-1">
+        <p class="section-label">Sticking point 01</p>
+        <h3 id="question-title-1">I cannot tell a wavefunction from an electron density.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Are orbitals and electron density the same?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-1" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-1">Explain the difference between a many-electron wavefunction, a molecular orbital, and electron density at an introductory level. Use their variables and normalisation to distinguish them, then ask me one check question.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It asks for explicit distinctions instead of an analogy that could hide them.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>A many-electron wavefunction depends on all electronic coordinates and spin variables. An orbital is a one-electron function used to build approximate descriptions. Electron density describes the expected number of electrons per volume at a position; integrating it over space gives the electron count. A single orbital&#x27;s squared magnitude is not generally the total density.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>How is the density assembled from occupied orbitals in a closed-shell independent-particle picture?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>For a ten-electron system, what does the spatial integral of the electron density give?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>Ten electrons.</p></details></div></details>
+      </article>
+      <article class="question-card" id="question-2" aria-labelledby="question-title-2">
+        <p class="section-label">Sticking point 02</p>
+        <h3 id="question-title-2">I do not understand why the nuclei are held fixed.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Why can we ignore nuclear motion?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-2" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-2">Explain the Born–Oppenheimer approximation using a bond-length scan. Describe what is solved at each fixed geometry, how the nuclei can move later, and when separating electronic and nuclear motion becomes less reliable.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It asks about the approximation&#x27;s role and limits, rather than treating nuclei as permanently frozen.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>At each chosen nuclear geometry, solve an electronic problem parametrised by those nuclear positions. Electronic energy together with nuclear repulsion defines an energy surface for nuclear motion. Nuclear motion is then treated on that surface in the usual single-surface picture. Electronic-state coupling can matter near degeneracies or other nonadiabatic situations.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>What quantity changes between the points of a bond-length scan?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>Does the approximation mean real nuclei never move?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>No. It separates parts of the description of their motion.</p></details></div></details>
+      </article>
+      <article class="question-card" id="question-3" aria-labelledby="question-title-3">
+        <p class="section-label">Sticking point 03</p>
+        <h3 id="question-title-3">Negative energies seem to mean that something is wrong.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Why is the total energy negative?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-3" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-3">Explain why an isolated molecule can have a negative total energy relative to the chosen zero. Then explain why comparing raw total energies of different molecular compositions does not establish which is more stable.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It asks about both the reference and the validity of a comparison.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>An energy&#x27;s sign depends on its zero. For a typical isolated electronic-structure calculation, attractive binding can give a negative total energy relative to separated free charges. A larger molecule often has a more negative total energy simply because it contains more particles. Chemical stability requires a defined comparison, such as a balanced reaction with consistently computed energies.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>How would you define an energy change for a balanced dissociation reaction?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>Does the most negative total energy among molecules with different compositions identify the most stable substance?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>No. The comparison needs a chemically defined reference.</p></details></div></details>
+      </article>
+    </section>
+    <section class="question-builder chapter-section" aria-labelledby="builder-title">
+      <p class="section-label">Practise the skill</p><h2 id="builder-title">Build your own question.</h2>
+      <p>Complete the prompts below, then paste your draft into ChatGPT or another AI tutor. Your text stays on this page; the builder does not send it to an AI service.</p>
+      <noscript><p>Use this pattern: what I know → where I am stuck → my evidence → help I need → how I will check.</p></noscript>
+      <form data-question-builder hidden>
+        <div class="builder-fields">
+          <label>What I already understand<textarea name="known" rows="3" placeholder="For example: I know that HF uses orbitals."></textarea></label>
+          <label>Where I am stuck <span>(required)</span><textarea name="stuck" rows="3" required placeholder="Name the step, term, result, or contradiction that confuses you."></textarea></label>
+          <label>Evidence and context<textarea name="evidence" rows="3" placeholder="Relevant molecule, charge, spin, method, basis, units, code, or output."></textarea></label>
+          <label>What would help me?<select name="help"><option value="concept">A conceptual explanation</option><option value="comparison">A comparison of two ideas</option><option value="diagnosis">Help interpreting an error or result</option><option value="hint">One hint before the solution</option></select></label>
+        </div>
+        <button class="button primary" type="submit">Build my question</button>
+        <div class="builder-result" hidden><h3>Your question to copy</h3><pre id="built-question" tabindex="0"></pre><button class="copy-button" type="button" data-copy-target="built-question">Copy my question</button><p role="status" data-builder-status></p></div>
+      </form>
+    </section>
+    <section class="study-record chapter-section" aria-labelledby="record-title">
+      <h2 id="record-title">Keep a learning record.</h2>
+      <p>When you try a question, note the tool, model name shown in the app, and date. Save your question, the actual AI answer, the follow-up, and what you verified.</p>
+      <div class="record-fields"><label>Tool<input type="text" placeholder="For example: ChatGPT" autocomplete="off"></label><label>Model shown in your app<input type="text" placeholder="Enter the displayed model name" autocomplete="off"></label><label>Date<input type="date"></label></div>
+      <p class="chapter-note">These fields are a temporary reminder on this page. Copy them into your own notes before leaving; they are not saved.</p>
+    </section>
+    <section class="chapter-section chapter-references" id="references"><h2>Check the explanation.</h2><p>Use these references together with the actual inputs and outputs of your calculation.</p><ul><li><a href="https://psi4.github.io/psi4docs/master/scf.html">Hartree–Fock theory and the electronic Hamiltonian</a></li></ul><p><a href="https://developers.openai.com/api/docs/guides/prompt-engineering">General prompting guidance from OpenAI</a></p></section>
+    <nav class="chapter-navigation" aria-label="Chapter navigation"><a href="../index.html#curriculum">All chapters</a><a rel="prev" href="03_molecules.html">← Working with molecules</a><a rel="next" href="05_basis_sets.html">Basis sets →</a></nav>
+    <p class="copy-status" role="status" aria-live="polite" data-copy-status></p>
+  </main>
+  <section class="supporters" aria-label="Project support and affiliation">
+    <div class="supporter supporter-rsc"><p class="supporter-label">Supported by RSC – EDI</p><a class="supporter-logo" href="https://www.rsc.org/policy-and-campaigning/science-culture"><img src="../assets/royal-society-of-chemistry.svg" alt="Royal Society of Chemistry" width="252" height="71"></a><p class="supporter-detail">Equality, Diversity &amp; Inclusion</p></div>
+    <div class="supporter supporter-liverpool"><a class="supporter-logo" href="https://www.liverpool.ac.uk/"><img src="../assets/university-of-liverpool.svg" alt="University of Liverpool" width="284" height="72"></a></div>
+  </section>
+  <footer class="chapter-footer"><a href="../index.html">AI4CompChem</a><p>Ask a better question. Build a clearer understanding.</p><a href="https://github.com/xueyongshef/AI4CompChem">Source on GitHub ↗</a></footer>
+  <script src="../script.js"></script><script src="../chapters.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Learn Getting started by asking better AI questions, comparing worked answers, and checking your understanding.">
+  <title>Getting started | Ask AI | AI4CompChem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../chapters.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html"><span class="brand-mark"><i></i><i></i><i></i></span><span>AI4<span>CompChem</span></span></a>
+    <button class="menu-button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="site-nav"><a href="../index.html#curriculum">All chapters</a><a href="#ask-ai">Ask AI</a><a href="#references">References</a><a class="github-link" href="https://github.com/xueyongshef/AI4CompChem">GitHub ↗</a></nav>
+  </header>
+  <main class="chapter-main" id="top">
+    <header class="chapter-heading">
+      <a class="chapter-back" href="../index.html#foundations">← Foundations</a>
+      <p class="section-label">Chapter 01 · Foundations</p>
+      <h1>Getting started</h1>
+      <p class="chapter-subtitle">Environments · notebooks · reproducible workflows</p>
+      <p class="chapter-intro">Learn the chemistry by turning a sticking point into a precise question, examining an answer, and explaining the idea yourself.</p>
+      <a class="button primary" href="#ask-ai">Explore three worked questions ↓</a>
+    </header>
+    <section class="chapter-overview chapter-section" aria-label="Chapter outline">
+      <div><h2>What you will learn</h2><ul><li>Set up a Python environment and use a notebook.</li><li>Keep inputs, units, software versions, and outputs together.</li></ul></div>
+      <details class="lesson-plan"><summary>Video and exercise plan</summary><p>Videos, full explanatory lessons, and runnable exercises are in preparation. The Ask AI examples below are available to study now.</p><h3>Planned short videos</h3><ol><li>Your first computational chemistry workspace</li><li>How to keep a calculation reproducible</li></ol><h3>Planned exercise</h3><p>Create a notebook that records your environment, a molecular question, and the inputs needed to investigate it.</p></details>
+    </section>
+    <section class="chapter-section" id="ask-ai" aria-labelledby="ask-ai-title">
+      <p class="section-label">A separate space for your questions</p><h2 id="ask-ai-title">Ask AI when you get stuck.</h2>
+      <p>Choose a problem below. Adapt the question to your situation, try it in your AI tool, then compare the explanation and use the self-check.</p>
+      <p class="example-note"><strong>About the answers:</strong> The example answers are course-authored teaching examples, not recorded responses from a named external model. Use ChatGPT or another AI tutor, and record the tool, model name shown in the app, and date when you try a question.</p>
+      <ol class="question-framework"><li><strong>What I know</strong><span>State your level and the part you already understand.</span></li><li><strong>Where I am stuck</strong><span>Identify one confusing term, step, result, or contradiction.</span></li><li><strong>My evidence</strong><span>Include the relevant molecule, method, basis, units, code, or output.</span></li><li><strong>Help I need</strong><span>Request an explanation, comparison, diagnostic question, or hint.</span></li><li><strong>How I will check</strong><span>Ask for assumptions and a check against a reference, calculation, or self-test.</span></li></ol>
+      <nav class="question-index" aria-label="Common sticking points"><a href="#question-1">01 · My package is installed, but my notebook cannot import it.</a><a href="#question-2">02 · I do not know what information to include in a question.</a><a href="#question-3">03 · My result differs from someone else&#x27;s.</a></nav>
+      <article class="question-card" id="question-1" aria-labelledby="question-title-1">
+        <p class="section-label">Sticking point 01</p>
+        <h3 id="question-title-1">My package is installed, but my notebook cannot import it.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Why does Python not work?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-1" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-1">I am using a Jupyter notebook and get ModuleNotFoundError after installing a package in my terminal. Explain how the notebook kernel and terminal Python can differ. Ask for my operating system, the exact error, and the interpreter paths before suggesting a fix.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It describes the symptom and asks for evidence that can separate several possible causes.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>A notebook kernel may use a different Python environment from the terminal. First compare the notebook&#x27;s sys.executable with the interpreter used for installation. Check the package name and installation message. Then select the intended kernel or install into that environment. The error alone does not identify which of these is responsible.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>How can I verify that the notebook now uses the intended environment?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>Does a successful terminal installation prove the notebook can import the package?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>No. The installation and notebook must use the same intended environment.</p></details></div></details>
+      </article>
+      <article class="question-card" id="question-2" aria-labelledby="question-title-2">
+        <p class="section-label">Sticking point 02</p>
+        <h3 id="question-title-2">I do not know what information to include in a question.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “My calculation failed. Fix it.”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-2" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-2">Help me write a useful troubleshooting question for a failed water calculation. Ask me for the software and version, input, charge, multiplicity, method, basis, relevant error text, and what I expected. Explain why each item matters.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It turns a broad request into a reproducible description of the problem.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>Start with the smallest input that reproduces the failure and the relevant error lines. State the intended calculation and what happened instead. Geometry, charge, multiplicity, method, basis, software, and version constrain the diagnosis. A useful first answer may ask for missing evidence rather than prescribe a change.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>Which information should I collect first if I only have the error message?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>Can an AI diagnose every calculation failure from &#x27;SCF failed&#x27;?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>No. That symptom has several possible causes and needs context.</p></details></div></details>
+      </article>
+      <article class="question-card" id="question-3" aria-labelledby="question-title-3">
+        <p class="section-label">Sticking point 03</p>
+        <h3 id="question-title-3">My result differs from someone else&#x27;s.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Which result is right?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-3" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-3">Two water calculations give different energies. Help me make a comparison table before deciding which is correct. Include geometry, charge, spin, method, basis, units, numerical settings, and software version. Do not invent either result.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It asks whether the calculations are comparable before judging their outputs.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>Different inputs can produce different legitimate results. Compare like quantities with matching units and definitions, then check the geometry, electronic state, method, basis, and numerical settings. A discrepancy becomes evidence of an error only after differences in the calculation setup are understood.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>Which differences would change the physical model, and which concern numerical convergence?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>Is matching the molecule&#x27;s name enough to compare two energies?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>No. The geometry, electronic state, model, units, and settings also matter.</p></details></div></details>
+      </article>
+    </section>
+    <section class="question-builder chapter-section" aria-labelledby="builder-title">
+      <p class="section-label">Practise the skill</p><h2 id="builder-title">Build your own question.</h2>
+      <p>Complete the prompts below, then paste your draft into ChatGPT or another AI tutor. Your text stays on this page; the builder does not send it to an AI service.</p>
+      <noscript><p>Use this pattern: what I know → where I am stuck → my evidence → help I need → how I will check.</p></noscript>
+      <form data-question-builder hidden>
+        <div class="builder-fields">
+          <label>What I already understand<textarea name="known" rows="3" placeholder="For example: I know that HF uses orbitals."></textarea></label>
+          <label>Where I am stuck <span>(required)</span><textarea name="stuck" rows="3" required placeholder="Name the step, term, result, or contradiction that confuses you."></textarea></label>
+          <label>Evidence and context<textarea name="evidence" rows="3" placeholder="Relevant molecule, charge, spin, method, basis, units, code, or output."></textarea></label>
+          <label>What would help me?<select name="help"><option value="concept">A conceptual explanation</option><option value="comparison">A comparison of two ideas</option><option value="diagnosis">Help interpreting an error or result</option><option value="hint">One hint before the solution</option></select></label>
+        </div>
+        <button class="button primary" type="submit">Build my question</button>
+        <div class="builder-result" hidden><h3>Your question to copy</h3><pre id="built-question" tabindex="0"></pre><button class="copy-button" type="button" data-copy-target="built-question">Copy my question</button><p role="status" data-builder-status></p></div>
+      </form>
+    </section>
+    <section class="study-record chapter-section" aria-labelledby="record-title">
+      <h2 id="record-title">Keep a learning record.</h2>
+      <p>When you try a question, note the tool, model name shown in the app, and date. Save your question, the actual AI answer, the follow-up, and what you verified.</p>
+      <div class="record-fields"><label>Tool<input type="text" placeholder="For example: ChatGPT" autocomplete="off"></label><label>Model shown in your app<input type="text" placeholder="Enter the displayed model name" autocomplete="off"></label><label>Date<input type="date"></label></div>
+      <p class="chapter-note">These fields are a temporary reminder on this page. Copy them into your own notes before leaving; they are not saved.</p>
+    </section>
+    <section class="chapter-section chapter-references" id="references"><h2>Check the explanation.</h2><p>Use these references together with the actual inputs and outputs of your calculation.</p><ul><li><a href="https://docs.python.org/3/tutorial/venv.html">Python virtual environments</a></li></ul><p><a href="https://developers.openai.com/api/docs/guides/prompt-engineering">General prompting guidance from OpenAI</a></p></section>
+    <nav class="chapter-navigation" aria-label="Chapter navigation"><a href="../index.html#curriculum">All chapters</a><a rel="next" href="02_python.html">Python essentials →</a></nav>
+    <p class="copy-status" role="status" aria-live="polite" data-copy-status></p>
+  </main>
+  <section class="supporters" aria-label="Project support and affiliation">
+    <div class="supporter supporter-rsc"><p class="supporter-label">Supported by RSC – EDI</p><a class="supporter-logo" href="https://www.rsc.org/policy-and-campaigning/science-culture"><img src="../assets/royal-society-of-chemistry.svg" alt="Royal Society of Chemistry" width="252" height="71"></a><p class="supporter-detail">Equality, Diversity &amp; Inclusion</p></div>
+    <div class="supporter supporter-liverpool"><a class="supporter-logo" href="https://www.liverpool.ac.uk/"><img src="../assets/university-of-liverpool.svg" alt="University of Liverpool" width="284" height="72"></a></div>
+  </section>
+  <footer class="chapter-footer"><a href="../index.html">AI4CompChem</a><p>Ask a better question. Build a clearer understanding.</p><a href="https://github.com/xueyongshef/AI4CompChem">Source on GitHub ↗</a></footer>
+  <script src="../script.js"></script><script src="../chapters.js"></script>
+</body>
+</html>

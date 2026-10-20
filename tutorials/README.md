@@ -1,8 +1,8 @@
 # Computational chemistry learning path
 
-Learn computational chemistry with AI-assisted explanations, short videos, and reproducible exercises. The curriculum contains **15 topics in four stages**.
+Learn computational chemistry and the skill of asking useful AI questions. The curriculum contains **15 chapters in four stages**, each with three worked question-and-answer examples.
 
-**Current status:** these pages are topic outlines. Videos, detailed lessons, notebooks, and exercises are being developed; the exercise descriptions below are plans rather than finished tutorials.
+**Available now:** chapter outlines and 45 Ask AI examples, with questions to adapt, course-authored example answers, follow-ups, and self-checks. Videos, full lessons, notebooks, and runnable exercises are in preparation.
 
 ## 1. Foundations
 
@@ -47,13 +47,24 @@ Use interaction potentials to explore molecular motion, ensembles, and sampling.
 | [14. Molecular dynamics (MD)](14_molecular_dynamics/README.md) | Integration · time steps · ensembles · trajectories |
 | [15. Statistical mechanics and sampling](15_statistical_mechanics/README.md) | Boltzmann weights · averages · uncertainty · free energy |
 
-## How each topic will work
+## Ask AI when you get stuck
 
-1. Watch a short concept video.
-2. Read the explanation and identify its assumptions.
-3. Follow a worked calculation or visual example.
-4. Try an exercise and interpret the result.
-5. Use the topic's AI study prompt to test understanding, then verify claims against the references and calculation output.
+The central learning skill is to turn confusion into a precise question, examine the explanation, and check the science. Every chapter contains three worked examples and a question builder on its website page.
+
+1. State what you already understand.
+2. Identify the exact point where you are stuck.
+3. Add relevant evidence: molecule, charge, spin, method, basis, units, code, or output.
+4. Ask for the kind of help you need: an explanation, comparison, diagnostic question, or hint.
+5. Examine the example answer and ask a follow-up.
+6. Check the explanation against references or calculations, then answer the self-check yourself.
+
+**About the answers:** the worked answers were written as teaching examples for this course. They are not transcripts from a named external model. When trying a prompt with ChatGPT or another AI tutor, record the tool, model name displayed in the app, date, actual answer, follow-up, and your verification.
+
+See [OpenAI's general prompting guidance](https://developers.openai.com/api/docs/guides/prompt-engineering) for context and instruction design. The chemistry-specific questions and checks are part of this course.
+
+## Planned lesson materials
+
+Each chapter will also include a short concept video, an explanatory lesson, a worked calculation, and an exercise. The existing exercise descriptions are plans, not completed runnable tutorials.
 
 The two potential-related topics have distinct roles: **potential energy surfaces** describe energy across molecular geometries, while **force fields and interaction potentials** introduce models used to compute molecular energies and forces.
 

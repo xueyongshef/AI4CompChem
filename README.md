@@ -1,6 +1,6 @@
 # AI4CompChem
 
-Learn computational chemistry with AI-assisted explanations, short videos, and reproducible exercises.
+Learn computational chemistry and how to ask AI useful questions: identify confusion, provide evidence, explore an explanation, and check your understanding.
 
 ## Website
 
@@ -17,9 +17,11 @@ The learning path contains **15 topics in four stages**. Start with the foundati
 | Potential energy and reactions | [Potential energy surfaces (PES)](tutorials/09_potential_energy_surfaces/README.md) · [Geometry optimisation](tutorials/10_geometry_optimisation/README.md) · [Vibrations and thermochemistry](tutorials/11_vibrations_thermochemistry/README.md) · [Transition states and reaction paths](tutorials/12_reaction_paths/README.md) |
 | Molecular simulation | [Force fields and interaction potentials](tutorials/13_force_fields/README.md) · [Molecular dynamics (MD)](tutorials/14_molecular_dynamics/README.md) · [Statistical mechanics and sampling](tutorials/15_statistical_mechanics/README.md) |
 
-**Status:** topic outlines are available; videos, detailed lessons, and runnable exercises are in preparation. See the [full learning path](tutorials/README.md) for the proposed sequence and each topic's learning goals.
+**Available now:** 15 chapter pages and 45 worked Ask AI examples, with improved questions, example answers, follow-ups, and self-checks. Videos, full lessons, and runnable exercises remain in preparation. See the [full learning path](tutorials/README.md).
 
-Each topic is organised around a short video, a concept explanation, a worked calculation, an exercise, and an AI study prompt.
+Each chapter has a dedicated **Ask AI when you get stuck** section. Students learn to turn a vague question into a specific, evidence-based question and assess the response. The answers are course-authored examples, not recorded outputs from a named model. Students can use ChatGPT or another AI tutor and record the tool, displayed model, and date.
+
+The website chapters are linked from the course homepage; matching question-and-answer material is also included in the tutorial READMEs.
 
 ## Repository Structure
 
@@ -28,6 +30,10 @@ AI4CompChem/
 ├── README.md
 ├── LICENSE
 ├── requirements.txt
+├── content/
+│   └── ai_questions.json
+├── scripts/
+│   └── build_chapters.py
 ├── tutorials/
 │   ├── README.md
 │   ├── 01_getting_started/
@@ -48,6 +54,7 @@ AI4CompChem/
 ├── notebooks/
 ├── examples/
 └── docs/
+    └── chapters/
 ```
 
 ## Getting Started
@@ -57,3 +64,13 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 ```
+
+## Updating the Ask AI material
+
+Edit `content/ai_questions.json` for the worked questions and `tutorials/*/README.md` for the chapter outlines, then run:
+
+```bash
+python3 scripts/build_chapters.py
+```
+
+This rebuilds the static pages in `docs/chapters/` and the matching Ask AI sections in the tutorial READMEs. Commit the content, builder, tutorial, and generated website changes together.

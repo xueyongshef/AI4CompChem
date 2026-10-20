@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Learn Geometry optimisation by asking better AI questions, comparing worked answers, and checking your understanding.">
+  <title>Geometry optimisation | Ask AI | AI4CompChem</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles.css"><link rel="stylesheet" href="../chapters.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html"><span class="brand-mark"><i></i><i></i><i></i></span><span>AI4<span>CompChem</span></span></a>
+    <button class="menu-button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="site-nav"><a href="../index.html#curriculum">All chapters</a><a href="#ask-ai">Ask AI</a><a href="#references">References</a><a class="github-link" href="https://github.com/xueyongshef/AI4CompChem">GitHub ↗</a></nav>
+  </header>
+  <main class="chapter-main" id="top">
+    <header class="chapter-heading">
+      <a class="chapter-back" href="../index.html#energy-and-reactions">← Potential energy and reactions</a>
+      <p class="section-label">Chapter 10 · Potential energy and reactions</p>
+      <h1>Geometry optimisation</h1>
+      <p class="chapter-subtitle">Gradients · convergence · local minima</p>
+      <p class="chapter-intro">Learn the chemistry by turning a sticking point into a precise question, examining an answer, and explaining the idea yourself.</p>
+      <a class="button primary" href="#ask-ai">Explore three worked questions ↓</a>
+    </header>
+    <section class="chapter-overview chapter-section" aria-label="Chapter outline">
+      <div><h2>What you will learn</h2><ul><li>Distinguish a single-point energy calculation from geometry optimisation.</li><li>Read convergence criteria and explain why an optimised structure needs further checks.</li></ul></div>
+      <details class="lesson-plan"><summary>Video and exercise plan</summary><p>Videos, full explanatory lessons, and runnable exercises are in preparation. The Ask AI examples below are available to study now.</p><h3>Planned short videos</h3><ol><li>How a molecule finds a local minimum</li><li>Reading an optimisation log</li></ol><h3>Planned exercise</h3><p>Plan a water optimisation starting from a distorted geometry; record the initial and final bond lengths and convergence information.</p></details>
+    </section>
+    <section class="chapter-section" id="ask-ai" aria-labelledby="ask-ai-title">
+      <p class="section-label">A separate space for your questions</p><h2 id="ask-ai-title">Ask AI when you get stuck.</h2>
+      <p>Choose a problem below. Adapt the question to your situation, try it in your AI tool, then compare the explanation and use the self-check.</p>
+      <p class="example-note"><strong>About the answers:</strong> The example answers are course-authored teaching examples, not recorded responses from a named external model. Use ChatGPT or another AI tutor, and record the tool, model name shown in the app, and date when you try a question.</p>
+      <ol class="question-framework"><li><strong>What I know</strong><span>State your level and the part you already understand.</span></li><li><strong>Where I am stuck</strong><span>Identify one confusing term, step, result, or contradiction.</span></li><li><strong>My evidence</strong><span>Include the relevant molecule, method, basis, units, code, or output.</span></li><li><strong>Help I need</strong><span>Request an explanation, comparison, diagnostic question, or hint.</span></li><li><strong>How I will check</strong><span>Ask for assumptions and a check against a reference, calculation, or self-test.</span></li></ol>
+      <nav class="question-index" aria-label="Common sticking points"><a href="#question-1">01 · I cannot tell an energy calculation from an optimisation.</a><a href="#question-2">02 · The energy stopped changing, but the optimiser continues.</a><a href="#question-3">03 · Different starting geometries reach different structures.</a></nav>
+      <article class="question-card" id="question-1" aria-labelledby="question-title-1">
+        <p class="section-label">Sticking point 01</p>
+        <h3 id="question-title-1">I cannot tell an energy calculation from an optimisation.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Why did the program not improve my geometry?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-1" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-1">Explain the difference between a single-point calculation and geometry optimisation. Describe whether the nuclear coordinates change and what evidence in an output distinguishes the two jobs.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It asks what operation the program was instructed to perform.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>A single-point calculation evaluates a chosen electronic model at the supplied geometry. Geometry optimisation changes nuclear coordinates to approach a stationary structure according to an algorithm and convergence criteria. A successful single point says nothing about whether the starting geometry is a minimum.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>Can I evaluate several methods at the same optimised geometry?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>Does a converged single-point energy imply that the molecular geometry was optimised?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>No. The coordinates may never have been varied.</p></details></div></details>
+      </article>
+      <article class="question-card" id="question-2" aria-labelledby="question-title-2">
+        <p class="section-label">Sticking point 02</p>
+        <h3 id="question-title-2">The energy stopped changing, but the optimiser continues.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Why is a small energy change not enough?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-2" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-2">My optimisation has a small energy change but a gradient criterion is unmet. Explain energy, gradient, and displacement criteria conceptually. Ask for the relevant convergence table before suggesting changes.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It identifies the actual unmet criterion and requests the evidence needed to interpret it.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>Near a shallow region, successive energies can differ little while forces or geometry steps remain significant. Optimisation programs therefore check more than energy changes. Read all required criteria and the step history. First establish whether progress is normal, oscillatory, or limited by numerical noise before changing thresholds.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>What would a persistent large gradient tell us?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>Can an almost unchanged energy coexist with an unmet force criterion?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>Yes. They measure different aspects of progress.</p></details></div></details>
+      </article>
+      <article class="question-card" id="question-3" aria-labelledby="question-title-3">
+        <p class="section-label">Sticking point 03</p>
+        <h3 id="question-title-3">Different starting geometries reach different structures.</h3>
+        <p class="starting-question"><strong>Starting question</strong> “Which optimised structure is the answer?”</p>
+        <div class="prompt-box">
+          <div class="prompt-box-heading"><h4>A more useful question</h4><button class="copy-button" type="button" data-copy-target="prompt-3" hidden>Copy question</button></div>
+          <p class="prompt-text" id="prompt-3">Two initial conformers converge to different geometries at the same method and basis. Explain local and global minima, propose checks of stationary-point character, and describe what a fair energy comparison requires.</p>
+        </div>
+        <p class="question-reason"><strong>Why this helps:</strong> It treats the starting geometry and search problem as part of the scientific question.</p>
+        <details class="example-answer"><summary>Compare with an example answer</summary><div class="answer-content"><p>An optimiser commonly finds a nearby local stationary structure. Multiple valid minima may exist, and one optimisation does not establish a global minimum. Check convergence and vibrational character, compare compatible energies, and explore additional conformers where relevant. The appropriate ranking may require thermal and environmental contributions.</p><p class="answer-provenance">Course-authored teaching example. Your AI response may differ.</p></div></details>
+        <div class="follow-up"><h4>Follow-up to ask</h4><p>How would conformational sampling change my search strategy?</p></div>
+        <details class="self-check"><summary>Check your understanding</summary><div class="answer-content"><p>Does reaching a local minimum prove there is no lower minimum elsewhere?</p><details class="check-answer"><summary>Reveal the check answer</summary><p>No. A local search does not establish the global landscape.</p></details></div></details>
+      </article>
+    </section>
+    <section class="question-builder chapter-section" aria-labelledby="builder-title">
+      <p class="section-label">Practise the skill</p><h2 id="builder-title">Build your own question.</h2>
+      <p>Complete the prompts below, then paste your draft into ChatGPT or another AI tutor. Your text stays on this page; the builder does not send it to an AI service.</p>
+      <noscript><p>Use this pattern: what I know → where I am stuck → my evidence → help I need → how I will check.</p></noscript>
+      <form data-question-builder hidden>
+        <div class="builder-fields">
+          <label>What I already understand<textarea name="known" rows="3" placeholder="For example: I know that HF uses orbitals."></textarea></label>
+          <label>Where I am stuck <span>(required)</span><textarea name="stuck" rows="3" required placeholder="Name the step, term, result, or contradiction that confuses you."></textarea></label>
+          <label>Evidence and context<textarea name="evidence" rows="3" placeholder="Relevant molecule, charge, spin, method, basis, units, code, or output."></textarea></label>
+          <label>What would help me?<select name="help"><option value="concept">A conceptual explanation</option><option value="comparison">A comparison of two ideas</option><option value="diagnosis">Help interpreting an error or result</option><option value="hint">One hint before the solution</option></select></label>
+        </div>
+        <button class="button primary" type="submit">Build my question</button>
+        <div class="builder-result" hidden><h3>Your question to copy</h3><pre id="built-question" tabindex="0"></pre><button class="copy-button" type="button" data-copy-target="built-question">Copy my question</button><p role="status" data-builder-status></p></div>
+      </form>
+    </section>
+    <section class="study-record chapter-section" aria-labelledby="record-title">
+      <h2 id="record-title">Keep a learning record.</h2>
+      <p>When you try a question, note the tool, model name shown in the app, and date. Save your question, the actual AI answer, the follow-up, and what you verified.</p>
+      <div class="record-fields"><label>Tool<input type="text" placeholder="For example: ChatGPT" autocomplete="off"></label><label>Model shown in your app<input type="text" placeholder="Enter the displayed model name" autocomplete="off"></label><label>Date<input type="date"></label></div>
+      <p class="chapter-note">These fields are a temporary reminder on this page. Copy them into your own notes before leaving; they are not saved.</p>
+    </section>
+    <section class="chapter-section chapter-references" id="references"><h2>Check the explanation.</h2><p>Use these references together with the actual inputs and outputs of your calculation.</p><ul><li><a href="https://psi4.github.io/psi4docs/master/optking.html">Psi4 geometry optimisation</a></li></ul><p><a href="https://developers.openai.com/api/docs/guides/prompt-engineering">General prompting guidance from OpenAI</a></p></section>
+    <nav class="chapter-navigation" aria-label="Chapter navigation"><a href="../index.html#curriculum">All chapters</a><a rel="prev" href="09_potential_energy_surfaces.html">← Potential energy surfaces (PES)</a><a rel="next" href="11_vibrations_thermochemistry.html">Vibrations and thermochemistry →</a></nav>
+    <p class="copy-status" role="status" aria-live="polite" data-copy-status></p>
+  </main>
+  <section class="supporters" aria-label="Project support and affiliation">
+    <div class="supporter supporter-rsc"><p class="supporter-label">Supported by RSC – EDI</p><a class="supporter-logo" href="https://www.rsc.org/policy-and-campaigning/science-culture"><img src="../assets/royal-society-of-chemistry.svg" alt="Royal Society of Chemistry" width="252" height="71"></a><p class="supporter-detail">Equality, Diversity &amp; Inclusion</p></div>
+    <div class="supporter supporter-liverpool"><a class="supporter-logo" href="https://www.liverpool.ac.uk/"><img src="../assets/university-of-liverpool.svg" alt="University of Liverpool" width="284" height="72"></a></div>
+  </section>
+  <footer class="chapter-footer"><a href="../index.html">AI4CompChem</a><p>Ask a better question. Build a clearer understanding.</p><a href="https://github.com/xueyongshef/AI4CompChem">Source on GitHub ↗</a></footer>
+  <script src="../script.js"></script><script src="../chapters.js"></script>
+</body>
+</html>
